@@ -13,8 +13,33 @@ void printCollection(RationalNumberCollection* rnc)
     printf("Collection: ");
     for(int i = 0; i < rnc->length; i++)
     {
-        printf(" %d/%d ", rnc->rnwc[i].rn.numerator,  rnc->rnwc[i].rn.denominator);
+        printf("\t%d/%d", rnc->rnwc[i].rn.numerator,  rnc->rnwc[i].rn.denominator);
     }
+    printf("\nCounter:    ");
+    for(int i = 0; i < rnc->length; i++)
+    {
+        printf("\t %d", rnc->rnwc[i].counter);
+    }
+    printf("\n");
+}
+
+void printRemoveFromCollection(RationalNumberCollection* rnc, RationalNumber rn)
+{
+    rncRemove(rnc, rn);
+    printf("remove %d/%d \n", rn.numerator, rn.denominator);
+    printCollection(rnc);
+    printf("rncTotalCount %d \n", rncTotalCount(rnc));
+    printf("rncSum %d/%d \n", rncSum(rnc).numerator, rncSum(rnc).denominator);
+    printf("\n");
+}
+
+void printAddToCollection(RationalNumberCollection* rnc, RationalNumber rn)
+{
+    rncAdd(rnc, rn);
+    printf("add %d/%d to collection \n", rn.numerator, rn.denominator);
+    printCollection(rnc);
+    printf("rncTotalCount %d \n", rncTotalCount(rnc));
+    printf("rncSum: %d/%d \n", rncSum(rnc).numerator, rncSum(rnc).denominator);
     printf("\n");
 }
 
@@ -57,38 +82,25 @@ int main()
     RationalNumberCollection rnc;
     rncInit(&rnc);
 
-    ( rncAdd(&rnc, n1) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n2) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n3) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n4) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n5) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n6) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n1) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n1) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
-    ( rncAdd(&rnc, n5) );
-    printf("rncSum %d / %d \n", rncSum(&rnc).numerator, rncSum(&rnc).denominator);
+    printAddToCollection(&rnc, n1);
+    printAddToCollection(&rnc, n2);
+    printAddToCollection(&rnc, n3);
+    printAddToCollection(&rnc, n4);
+    printAddToCollection(&rnc, n5);
+    printAddToCollection(&rnc, n6);
+    printAddToCollection(&rnc, n1);
+    printAddToCollection(&rnc, n1);
+    printAddToCollection(&rnc, n5);
 
-    printf("rncTotalCount %d \n", rncTotalCount(&rnc));
-    printf("rncAverage %d / %d \n", rncAverage(&rnc).numerator, rncAverage(&rnc).denominator);
+    printf("total uniques: %d \n", rncTotalUniqueCount(&rnc));
+    printf("rncAverage %d/%d \n", rncAverage(&rnc).numerator, rncAverage(&rnc).denominator);
+    printf("\n");
 
-    printCollection(&rnc);
+    printRemoveFromCollection(&rnc, n2);
+    printRemoveFromCollection(&rnc, n2);
+    printRemoveFromCollection(&rnc, n2);
 
-    rncRemove(&rnc, n2);
-    printCollection(&rnc);
-    rncRemove(&rnc, n2);
-    printCollection(&rnc);
-    rncRemove(&rnc, n2);
-    printCollection(&rnc);
-
-    printf("rncTotalCount %d \n", rncTotalCount(&rnc));
+    printAddToCollection(&rnc, nn);
 
     printf(" successful!\n");
 
