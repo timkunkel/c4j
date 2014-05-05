@@ -2,7 +2,7 @@
 
 void rncInit(RationalNumberCollection* rnc)
 {
-    RationalNumber newrn = RationalNumber {0, 1};
+    RationalNumber newrn =  {0, 1};
     rnc->length = 0;
     rnc->totalSum = newrn;
     rnc->totalCount = 0;
@@ -107,7 +107,8 @@ RationalNumber rncSum(RationalNumberCollection* rnc)
 
 RationalNumber rncAverage(RationalNumberCollection* rnc)
 {
-    return rnMultiply(rncSum(rnc), RationalNumber {1, rncTotalCount(rnc)});
+    RationalNumber rn = {1, rncTotalCount(rnc)};
+    return rnMultiply(rncSum(rnc), rn);
 }
 
 

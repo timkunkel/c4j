@@ -1,5 +1,7 @@
 #include "rationalnumber.h"
 
+RationalNumber invalid = {1,0};
+
 int Euclid(int a, int b)
 {
     if(b == 0)
@@ -18,11 +20,14 @@ bool rnIsValid(RationalNumber n)
 
 RationalNumber normalize(RationalNumber n)
 {
-    if(!rnIsValid(n))
-        return RationalNumber {1, 0};
 
+    if(!rnIsValid(n)){
+
+        return invalid;
+}
     int gcd = Euclid(n.numerator, n.denominator);
-    return RationalNumber {n.numerator/gcd, n.denominator/gcd};
+    RationalNumber rn = {n.numerator/gcd, n.denominator/gcd};
+    return rn;
 }
 
 bool rnEqual(RationalNumber n1, RationalNumber n2)
@@ -55,36 +60,38 @@ bool rnLessThan (RationalNumber n1, RationalNumber n2)
 
 RationalNumber rnAdd(RationalNumber n1, RationalNumber n2)
 {
-    if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
 
+    if(!rnIsValid(n1) || !rnIsValid(n2))
+        return invalid;
     int newNum = n1.numerator * n2.denominator + n2.numerator * n1.denominator;
     int newDenum = n1.denominator * n2.denominator;
-    return normalize(RationalNumber {newNum, newDenum});
+    RationalNumber rn = {newNum, newDenum};
+    return normalize(rn );
 }
 
 RationalNumber rnSubtract(RationalNumber n1, RationalNumber n2)
 {
     if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
+        return invalid;
 
     int newNum = n1.numerator * n2.denominator - n2.numerator * n1.denominator;
     int newDenum = n1.denominator * n2.denominator;
-    return normalize(RationalNumber {newNum, newDenum});
+    RationalNumber rn = {newNum, newDenum};
+    return normalize(rn);
 }
 
 RationalNumber rnMultiply(RationalNumber n1, RationalNumber n2)
 {
     if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
-    return normalize(RationalNumber {n1.numerator * n2.numerator, n1.denominator * n2.denominator});
+        return invalid;
+    RationalNumber rn = {n1.numerator * n2.numerator, n1.denominator * n2.denominator};
+    return normalize(rn);
 }
 
 RationalNumber rnDivide(RationalNumber n1, RationalNumber n2)
 {
     if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
-    return rnMultiply(n1, RationalNumber {n2.denominator, n2.numerator});
+        return invalid;
+    RationalNumber rn = {n2.denominator, n2.numerator};
+    return rnMultiply(n1, rn);
 }
