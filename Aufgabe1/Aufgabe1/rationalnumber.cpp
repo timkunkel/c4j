@@ -51,7 +51,7 @@ bool rnLessThan (RationalNumber n1, RationalNumber n2)
     if(((n1.numerator < 0)^(n1.denominator < 0)) && !((n2.numerator < 0)^(n2.denominator < 0)))
         return true;
 
-    else if(n1.numerator / n1.denominator < n2.numerator / n2.denominator)
+    else if((float)n1.numerator / (float)n1.denominator < (float)n2.numerator / (float)n2.denominator)
         return true;
 
     return false;
