@@ -53,8 +53,8 @@ void rncAdd(RationalNumberCollection* rnc, RationalNumber rn)
         {
             rnc->rnwc[i + 1] = rnc->rnwc[i];
         }
-        RationalNumber
-        rnc->rnwc[index] = RationalNumberWithCounter {rn, 1};
+        RationalNumberWithCounter newRnwc =   {rn, 1};
+        rnc->rnwc[index] =newRnwc;
         rnc->length++;
     }
     rnc->totalCount++;
