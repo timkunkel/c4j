@@ -108,7 +108,6 @@ int rncTotalCount(RationalNumberCollection* rnc)
 
 RationalNumber rncSum(RationalNumberCollection* rnc)
 {
-
     return rnc->totalSum;
 }
 
