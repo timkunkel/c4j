@@ -35,8 +35,8 @@ void printRemoveFromCollection(RationalNumberCollection* rnc, RationalNumber rn)
 
 void printAddToCollection(RationalNumberCollection* rnc, RationalNumber rn)
 {
-    rncAdd(rnc, rn);
     printf("add %d/%d to collection \n", rn.numerator, rn.denominator);
+    rncAdd(rnc, rn);
     printCollection(rnc);
     printf("rncTotalCount %d \n", rncTotalCount(rnc));
     printf("rncSum: %d/%d \n", rncSum(rnc).numerator, rncSum(rnc).denominator);

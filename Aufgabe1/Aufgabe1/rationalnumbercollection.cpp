@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "rationalnumbercollection.h"
 
 void rncInit(RationalNumberCollection* rnc)
@@ -35,6 +36,12 @@ int rncContainsAt(RationalNumberCollection* rnc, RationalNumber rn)
 
 void rncAdd(RationalNumberCollection* rnc, RationalNumber rn)
 {
+    if(!rnIsValid(rn))
+    {
+        printf("Cannot add %d/%d to collectione, because it's an invalid rational number. \n",
+               rn.numerator, rn.denominator);
+        return;
+    }
     int index = rncContainsAt(rnc, rn);
     if(index >= 0)
     {
