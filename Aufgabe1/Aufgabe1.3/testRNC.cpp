@@ -9,6 +9,14 @@
 #include "rationalnumbercollection.h"
 
 
+void fillArray(RationalNumberCollection* c,int maxValues){
+
+    for(int i = 0; i< maxValues;i++){
+        RationalNumber newrn = {i,1};
+        rncAdd(c,newrn);
+    }
+}
+
 int main()
 {
 
@@ -66,6 +74,11 @@ int main()
     ( rncAdd(rnc, n5) );
     printf("rncSum %d / %d \n", rncSum(rnc).numerator, rncSum(rnc).denominator);
 
+    printf("rncTotalCount %d \n", rncTotalCount(rnc));
+    printf("rncAverage %d / %d \n", rncAverage(rnc).numerator, rncAverage(rnc).denominator);
+
+    printf("---Filling Array--- \n");
+    fillArray(rnc,995);
     printf("rncTotalCount %d \n", rncTotalCount(rnc));
     printf("rncAverage %d / %d \n", rncAverage(rnc).numerator, rncAverage(rnc).denominator);
 
