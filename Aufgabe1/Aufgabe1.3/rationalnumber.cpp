@@ -18,11 +18,14 @@ bool rnIsValid(RationalNumber n)
 
 RationalNumber normalize(RationalNumber n)
 {
-    if(!rnIsValid(n))
-        return RationalNumber {1, 0};
 
+    if(!rnIsValid(n)){
+        RationalNumber invalidrn = {1,0};
+        return invalidrn;
+}
     int gcd = Euclid(n.numerator, n.denominator);
-    return RationalNumber {n.numerator/gcd, n.denominator/gcd};
+    RationalNumber newRn = {n.numerator/gcd, n.denominator/gcd};
+    return newRn ;
 }
 
 bool rnEqual(RationalNumber n1, RationalNumber n2)
@@ -55,36 +58,44 @@ bool rnLessThan (RationalNumber n1, RationalNumber n2)
 
 RationalNumber rnAdd(RationalNumber n1, RationalNumber n2)
 {
-    if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
+    if(!rnIsValid(n1) || !rnIsValid(n2)){
+        RationalNumber invalidRn = {1,0};
+        return invalidRn;
+}
     int newNum = n1.numerator * n2.denominator + n2.numerator * n1.denominator;
     int newDenum = n1.denominator * n2.denominator;
-    return normalize(RationalNumber {newNum, newDenum});
+    RationalNumber newRn =  {newNum, newDenum};
+    return normalize(newRn);
 }
 
 RationalNumber rnSubtract(RationalNumber n1, RationalNumber n2)
 {
-    if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
+    if(!rnIsValid(n1) || !rnIsValid(n2)){
+        RationalNumber invalidnumber =  {1, 0};
+        return invalidnumber;
+    }
     int newNum = n1.numerator * n2.denominator - n2.numerator * n1.denominator;
     int newDenum = n1.denominator * n2.denominator;
-    return normalize(RationalNumber {newNum, newDenum});
+    RationalNumber newRn = {newNum, newDenum};
+    return normalize(newRn);
 }
 
 RationalNumber rnMultiply(RationalNumber n1, RationalNumber n2)
 {
-    if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
-    return normalize(RationalNumber {n1.numerator * n2.numerator, n1.denominator * n2.denominator});
+    if(!rnIsValid(n1) || !rnIsValid(n2)){
+        RationalNumber invalidRn = {1,0};
+        return invalidRn;
+}
+    RationalNumber newRn =  {n1.numerator * n2.numerator, n1.denominator * n2.denominator};
+    return normalize(newRn);
 }
 
 RationalNumber rnDivide(RationalNumber n1, RationalNumber n2)
 {
-    if(!rnIsValid(n1) || !rnIsValid(n2))
-        return RationalNumber {1, 0};
-
-    return rnMultiply(n1, RationalNumber {n2.denominator, n2.numerator});
+    if(!rnIsValid(n1) || !rnIsValid(n2)){
+          RationalNumber invalidRn = {1,0};
+        return invalidRn;
+}
+    RationalNumber changed = {n2.denominator, n2.numerator};
+    return rnMultiply(n1, changed);
 }

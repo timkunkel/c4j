@@ -12,8 +12,9 @@ struct RationalNumberCollection
 
 void rncInit(RationalNumberCollection* rnc)
 {
+    RationalNumber newRn = {0, 1};
     rnc->length = 0;
-    rnc->totalSum = RationalNumber {0, 1};
+    rnc->totalSum = newRn;
     rnc->totalCount = 0;
 }
 
@@ -63,7 +64,8 @@ void rncAdd(RationalNumberCollection* rnc, RationalNumber rn)
             rnc->rnwc = newArray;
             rnc->maxArrayLength *= 2;
         }
-        rnc->rnwc[rnc->length++] = RationalNumberWithCounter {rn, 1};
+        RationalNumberWithCounter newRnWc = {rn, 1};
+        rnc->rnwc[rnc->length++] = newRnWc;
     }
     rnc->totalCount++;
     rnc->totalSum = rnAdd(rnc->totalSum, rn);
@@ -97,7 +99,8 @@ RationalNumber rncSum(RationalNumberCollection* rnc)
 
 RationalNumber rncAverage(RationalNumberCollection* rnc)
 {
-    return rnMultiply(rncSum(rnc), RationalNumber {1, rncTotalCount(rnc)});
+    RationalNumber newRN = {1, rncTotalCount(rnc)};
+    return rnMultiply(rncSum(rnc), newRN);
 }
 
 
