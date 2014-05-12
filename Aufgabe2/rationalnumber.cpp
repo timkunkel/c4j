@@ -1,10 +1,9 @@
 #include "rationalnumber.h"
 namespace rn {
 
-using namespace rn;
 
-bool rn::RationalNumber::isValid()const{
-    if(this->denom() == 0)
+bool RationalNumber::isValid()const{
+    if(denom() == 0)
         return false;
     return true;
 
@@ -23,43 +22,43 @@ RationalNumber normalize(RationalNumber rn) {
     return RationalNumber(rn.num()/gcd,rn.denom()/gcd);
 }
 
-RationalNumber rn::RationalNumber::operator+(RationalNumber rhs) const{
+RationalNumber RationalNumber::operator+(RationalNumber rhs) const{
      int newnum = num()* rhs.denom() + rhs.num() * denom();
      int newdenom = denom() * rhs.denom();
      return normalize(RationalNumber(newnum,newdenom));
  }
 
-RationalNumber rn::RationalNumber::operator-(RationalNumber rhs) const{
+RationalNumber RationalNumber::operator-(RationalNumber rhs) const{
      int newnum = num()* rhs.denom() - rhs.num() * denom();
      int newdenom = denom() * rhs.denom();
      return normalize(RationalNumber(newnum,newdenom));
  }
 
-RationalNumber rn::RationalNumber::operator*(RationalNumber rhs) const{
+RationalNumber RationalNumber::operator*(RationalNumber rhs) const{
      int newnum = num()*rhs.num();
      int newdenom = denom() * rhs.denom();
      return normalize(RationalNumber(newnum,newdenom));
  }
-RationalNumber rn::RationalNumber::operator-() const {
+RationalNumber RationalNumber::operator-() const {
    return RationalNumber(-1*num(), denom());
 }
 
-bool rn::RationalNumber::operator==(RationalNumber rhs) const{
-   RationalNumber n1 = normalize(RationalNumber(this->num(),this->denom()));
+bool RationalNumber::operator==(RationalNumber rhs) const{
+   RationalNumber n1 = normalize(*this);
    RationalNumber n2 = normalize(rhs);
 
     if(n1.num() == n2.num() && n1.denom() == n2.denom())
         return true;
     return false;
  }
-RationalNumber rn::RationalNumber::inverse() const{
+RationalNumber RationalNumber::inverse() const{
     return RationalNumber(denom(),num());
 }
-RationalNumber rn::RationalNumber::operator/(RationalNumber rhs) const{
+RationalNumber RationalNumber::operator/(RationalNumber rhs) const{
     return normalize(rhs * RationalNumber(this->denom(),this->num()));
 }
-bool rn::RationalNumber::operator <(RationalNumber rn) const{
-    if((float)this->num()/(float)this->denom() < (float)rn.num()/(float)rn.denom())
+bool RationalNumber::operator <(RationalNumber rn) const{
+    if((float)num()/(float)denom() < (float)rn.num()/(float)rn.denom())
         return true;
     return false;
 
