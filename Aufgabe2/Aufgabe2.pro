@@ -4,8 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    rationalnumber.cpp
+    rationalnumber.cpp \
+    map.cpp \
+    keyvaluenode.cpp
 
 HEADERS += \
-    rationalnumber.h
+    rationalnumber.h \
+    map.h \
+    keyvaluenode.h
 
