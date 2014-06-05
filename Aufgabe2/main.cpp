@@ -9,9 +9,25 @@
 #include <iostream>
 #include "assert.h"
 #include "rationalnumber.h"
+#include "keyvaluenode.h"
+#include "map.h"
 
 using namespace std;
 using namespace rn;
+
+void doMapTests(){
+
+    RationalNumber a;
+    Map* map = new Map();
+    cout << map->contains(a)<< endl;
+    //internal::KeyValueNode* map = new internal::KeyValueNode(a,1);
+    internal::KeyValueNode* kvn = new internal::KeyValueNode(a,2);
+
+
+
+
+
+}
 
 void doUnitTests_RationalNumber() {
 
@@ -85,6 +101,7 @@ void doUnitTests_RationalNumber() {
 
 int main()
 {
-    doUnitTests_RationalNumber();
+    doMapTests();
+    //doUnitTests_RationalNumber();
     return 0;
 }

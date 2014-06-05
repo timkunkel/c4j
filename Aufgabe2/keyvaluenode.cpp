@@ -1,35 +1,57 @@
+#include <iostream>
 #include "keyvaluenode.h"
 
+
 using namespace rn::internal;
+using namespace std;
 
 
-KeyValueNode* find(const KeyValueNode& node){
-    if(node.m_key == m_key)
-        return &this;
-    else if(&node == 0){
+KeyValueNode* KeyValueNode::find(const key_type& key){
+    cout << "Trying to find: " << key.num() <<"/"<<key.denom() <<
+    "got: " << m_key. num() <<"/"<<m_key.denom() << endl;
+    if(key == m_key){
+        cout << "Found " << key.num() <<"/"<<key.denom() << endl;
+        return this;
+    }
+    else if(lTree == 0){
+
         return 0;
     }
-    else if(node.m_key < m_key){
-        find(lTree);
-    }else{
-        find(lTree);
+
+    else if(key < m_key){
+        lTree->find(key);
+    }
+    else{
+        rTree->find(key);
     }
 
 }
-void insert(const key_type& key,const mapped_type& mapped){
-    if(key.m_key == m_key){
-        m_mapped = mapped.m_mapped;
+
+KeyValueNode* KeyValueNode::clone(){
+
+    KeyValueNode* clonedNode = new KeyValueNode(m_key,m_mapped);
+    if(rTree != 0)
+        rTree->clone();
+    if(lTree != 0)
+        lTree->clone();
+
+    return clonedNode;
+}
+
+void KeyValueNode::insert(const key_type& key,const mapped_type& mapped){
+    if(key.equals(m_key)){
+        m_mapped = mapped;
     }
-    else if(key.m_key < m_key){
-        if(lTree = 0)
+    else if(key < m_key){
+        if(lTree == 0)
             lTree = new KeyValueNode(key,mapped);
         else
-            lTree.insert(key,mapped);
+            lTree->insert(key,mapped);
     }
     else{
-        if(rTree = 0)
+        if(rTree == 0)
             rTree = new KeyValueNode(key,mapped);
         else
-            rTree.insert(key,mapped);
+            rTree->insert(key,mapped);
     }
 }
