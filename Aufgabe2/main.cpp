@@ -18,17 +18,15 @@ using namespace rn;
 
 void doMapTests(){
 
-    RationalNumber a;
-    Map* map = new Map();
-    map[a] = 1;
-    cout << map->contains(a)<< endl;
+    RationalNumber a(1,1);
+    cout << "Starting tests" << endl;
+    Map map;
+    cout << map[a] <<endl;
+    map[a] = 4;
+    cout << "NOw its:" << map[a] <<endl;
+    //cout << map->contains(a)<< endl;
     //internal::KeyValueNode* map = new internal::KeyValueNode(a,1);
   //  internal::KeyValueNode* kvn = new internal::KeyValueNode(a,2);
-
-
-
-
-
 }
 
 void doUnitTests_RationalNumber() {
@@ -48,6 +46,7 @@ void doUnitTests_RationalNumber() {
         // test non-default constructors and both accessors num() and denom()
         cout << "- more constructors..." << flush;
         RationalNumber a(1,2);
+        //a[3] = 1;
         assert(a.isValid());
         assert(a.num() == 1);
         assert(a.denom() == 2);
@@ -105,5 +104,6 @@ int main()
 {
     doMapTests();
     //doUnitTests_RationalNumber();
+  //  doUnitTests_RationalNumber();
     return 0;
 }

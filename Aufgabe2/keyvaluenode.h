@@ -9,19 +9,27 @@ class KeyValueNode{
    public:
     typedef RationalNumber key_type;
     typedef int mapped_type;
-private:
-    key_type m_key;
     mapped_type m_mapped;
-    KeyValueNode* rTree;
-    KeyValueNode* lTree;
+private:
+
     
 public:
+    key_type m_key;
+
+    KeyValueNode* rTree;
+    KeyValueNode* lTree;
 
 
 
-    KeyValueNode(const key_type& k,const mapped_type& m):m_key(0),m_mapped(0),rTree(0),lTree(0){
+
+
+
+    KeyValueNode(const key_type& k,mapped_type m=0,KeyValueNode* r = 0, KeyValueNode* l = 0 )
+        :m_key(k),m_mapped(m),rTree(r),lTree(l){
         m_key = k;
         m_mapped = m;
+        rTree = r;
+        lTree = l;
     }
     ~KeyValueNode(){
         if(rTree!=0){
@@ -41,9 +49,9 @@ public:
     }
 
     key_type key()const{return m_key;}
-    mapped_type mapped() const { return m_mapped;}
-    KeyValueNode* find(const key_type& key);
-    void insert(const key_type&,const mapped_type&);
+    mapped_type  mapped()const { return m_mapped; }
+    KeyValueNode& find(const key_type& key);
+    KeyValueNode* insert(const key_type&,const mapped_type&);
     KeyValueNode* clone();
 
 
