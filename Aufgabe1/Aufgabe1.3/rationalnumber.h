@@ -5,6 +5,7 @@
 struct RationalNumber
 {
     int numerator, denominator;
+
 };
 
 // returns whether the given rational number is valid

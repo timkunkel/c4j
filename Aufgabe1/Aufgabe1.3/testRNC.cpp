@@ -53,7 +53,7 @@ int main()
 
 
     /* Part 2 - RationalNumberColletion data type */
-    RationalNumberCollection* rnc = rncCreate(1000);
+    RationalNumberCollection* rnc = rncCreate(5);
 
     ( rncAdd(rnc, n1) );
     printf("rncSum %d / %d \n", rncSum(rnc).numerator, rncSum(rnc).denominator);

@@ -7,13 +7,13 @@
  * Tupel which contains a rational number and a int for counting
  * how often this rational number is contained in the
  * rational number collection
-*/
+
 struct RationalNumberWithCounter
 {
     RationalNumber rn;
     int counter;
 };
-
+*/
 /*
  * collection which contains an array of raional numbers with counters,
  * the length of that array, the sum of all rational numbers in that array

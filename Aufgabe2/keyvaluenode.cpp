@@ -39,7 +39,7 @@ KeyValueNode* KeyValueNode::clone(){
 }
 
 void KeyValueNode::insert(const key_type& key,const mapped_type& mapped){
-    if(key.equals(m_key)){
+    if(key == m_key){
         m_mapped = mapped;
     }
     else if(key < m_key){

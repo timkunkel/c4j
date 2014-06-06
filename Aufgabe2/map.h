@@ -4,14 +4,15 @@
 #include "keyvaluenode.h"
 
 namespace rn{
+
 class Map{
+
+
+
 public:
+    internal::KeyValueNode* m_root;
     typedef RationalNumber key_type;
     typedef int mapped_type;
-
-private:
-    internal::KeyValueNode* m_root;
-public:
 
 Map():m_root(0){}
 
@@ -19,6 +20,7 @@ Map():m_root(0){}
     if(m_root)
      delete m_root;
 }
+
 Map& operator=(const Map& rhs){
     if(m_root)
         delete m_root;
@@ -32,17 +34,23 @@ Map(const Map& rhs): m_root(0){
     *this = rhs;
 }
 
+mapped_type operator[](const key_type& k){
+        return m_root->find(k)->mapped();
+
+}
+const mapped_type& operator[](const key_type& k)const{
+
+         return m_root->find(k)->mapped();
 
 
 
-key_type operator[](const key_type& k);
-bool contains(const key_type& rhs);
+}
+
+bool contains(const key_type& rhs) const;
 
 
 };
 }
-
-
 
 
 #endif // MAP_H

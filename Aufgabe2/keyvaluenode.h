@@ -6,17 +6,18 @@ namespace internal {
 
 
 class KeyValueNode{
-    
+   public:
     typedef RationalNumber key_type;
-    typedef int mapped_type; 
-
+    typedef int mapped_type;
+private:
     key_type m_key;
     mapped_type m_mapped;
     KeyValueNode* rTree;
     KeyValueNode* lTree;
     
 public:
-    
+
+
 
     KeyValueNode(const key_type& k,const mapped_type& m):m_key(0),m_mapped(0),rTree(0),lTree(0){
         m_key = k;
