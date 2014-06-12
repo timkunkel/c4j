@@ -9,24 +9,65 @@
 #include <iostream>
 #include "assert.h"
 #include "map.h"
+#include <string>
 
 using namespace std;
 using namespace rn;
 
 
+string output(Map const& map){
+ string output;
 
+
+      output+= to_string(map.m_root->key().num()) ;
+              output+= "/";
+      output+= to_string(map.m_root->key().denom()) +"\n";
+      output+= "       /  \\\n" ;
+      output+= "      /    \\";
+      output+= "     ";
+              output+=to_string(map.m_root->lTree->key().num());
+      output += "/";
+              output += to_string(map.m_root->lTree->key().denom());
+      output+=
+               "    " ;
+      output +=to_string(map.m_root->rTree->key().num());
+       output+= "/";
+      output+= to_string(map.m_root->rTree->key().denom());
+
+
+return output;
+}
 
 void doMapTests(){
 
     RationalNumber a(1,1);
+    RationalNumber b(2,3);
+    RationalNumber c(1,4);
+    RationalNumber d(5,1);
+
     cout << "Starting tests" << endl;
     Map map;
-    cout << map[a] <<endl;
+
+   // assert(!map.contains(b));
+
+  //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
     map[a] = 4;
-    cout << "NOw its:" << map[a] <<endl;
-    //cout << map->contains(a)<< endl;
-    //internal::KeyValueNode* map = new internal::KeyValueNode(a,1);
-  //  internal::KeyValueNode* kvn = new internal::KeyValueNode(a,2);
+    map[d] = 1;
+    map[b] = 1;
+    map[c] = 2;
+
+
+    //cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
+
+    cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
+            "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
+            "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
+            endl;
+    Map newMap = map;
+    cout << output(newMap)<< endl;
+    cout << "Now its:" << map[a] <<endl;
+    cout << map.contains(a)<< endl;
+
 }
 
 void doUnitTests_RationalNumber() {
@@ -103,7 +144,7 @@ void doUnitTests_RationalNumber() {
 int main()
 {
     doMapTests();
-    //doUnitTests_RationalNumber();
+//  doUnitTests_RationalNumber();
   //  doUnitTests_RationalNumber();
     return 0;
 }

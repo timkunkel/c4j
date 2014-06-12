@@ -15,9 +15,7 @@ public:
     typedef rn::RationalNumber key_type;
     typedef int mapped_type;
 
-Map():m_root(0){
-    m_root;
-    cout << "created:"<< (m_root) << endl;}
+Map():m_root(0){}
 
 ~Map(){
     if(m_root)
@@ -26,16 +24,7 @@ Map():m_root(0){
 
 
 
-Map& operator=(const Map& rhs){
-    if(m_root)
-    {
-        delete m_root;
-    }
-    m_root = rhs.m_root;
-    rn::Map returnMap();
-  //  returnMap.m_root = m_root;
-    return *this;
-}
+Map& operator=(const Map& rhs);
 
 Map(const Map& rhs): m_root(0){
     *this = rhs;
@@ -45,6 +34,7 @@ mapped_type& operator[](const key_type k);
 const mapped_type operator[](const key_type k) const;
 
 bool contains(const key_type& rhs) const;
+Map& clone(const Map& map);
 
 
 };
