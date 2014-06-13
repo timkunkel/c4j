@@ -22,6 +22,11 @@ Map():m_root(0){}
      delete m_root;
 }
 
+Map(const Map& rhs):m_root(0){
+    *this = rhs;
+
+}
+
 
 
 Map& operator=(const Map& rhs);

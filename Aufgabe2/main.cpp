@@ -15,25 +15,34 @@ using namespace std;
 using namespace rn;
 
 
-string output(Map const& map){
+string outputString(rn::internal::KeyValueNode* node, int tabIndex){
  string output;
 
-      output += "\t  ";
-      output+= to_string(map.m_root->key().num()) ;
+ string tabString = "";
+    for (int i = 0; i < tabIndex; i++){
+      tabString += "\t";
+    }
+      output+= to_string(node->key().num()) ;
               output+= "/";
 
-      output+= to_string(map.m_root->key().denom()) +"\n";
-      output+= "\t /  \\\n" ;
-      output+= "\t/    \\\n";
-      output+= "     ";
-              output+=to_string(map.m_root->lTree->key().num());
-      output += "/";
-              output += to_string(map.m_root->lTree->key().denom());
+      output+= to_string(node->key().denom()) +"\n";
+      output+= tabString + " /  \\\n" ;
+      output+= tabString + "/    \\\n";
+      if (node->lTree){
+    //  output+= "     ";
+    //  output+=to_string(map.m_root->lTree->key().num());
+    //  output += "/";
+    //   output += to_string(map.m_root->lTree->key().denom());
       output+=
                "    " ;
-      output +=to_string(map.m_root->rTree->key().num());
-       output+= "/";
-      output+= to_string(map.m_root->rTree->key().denom());
+      output += outputString(node->lTree, tabIndex - 1);
+      }
+      if(node->rTree){
+     // output +=to_string(map.m_root->rTree->key().num());
+     // output+= "/";
+     // output+= to_string(map.m_root->rTree->key().denom());
+    output += outputString(node->rTree, tabIndex + 1);
+      }
 
 
 return output;
@@ -65,7 +74,7 @@ void doMapTests(){
    //         "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
     //        endl;
    Map newMap = map;
-    cout << output(newMap)<< endl;
+    cout << outputString(newMap.m_root, 3)<< endl;
     cout << "Now its:" << map[a] <<endl;
     cout << map.contains(a)<< endl;
 
