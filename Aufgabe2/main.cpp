@@ -18,12 +18,13 @@ using namespace rn;
 string output(Map const& map){
  string output;
 
-
+      output += "\t  ";
       output+= to_string(map.m_root->key().num()) ;
               output+= "/";
+
       output+= to_string(map.m_root->key().denom()) +"\n";
-      output+= "       /  \\\n" ;
-      output+= "      /    \\";
+      output+= "\t /  \\\n" ;
+      output+= "\t/    \\\n";
       output+= "     ";
               output+=to_string(map.m_root->lTree->key().num());
       output += "/";
@@ -59,11 +60,11 @@ void doMapTests(){
 
     //cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
 
-    cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
-            "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
-            "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
-            endl;
-    Map newMap = map;
+  //  cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
+  //          "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
+   //         "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
+    //        endl;
+   Map newMap = map;
     cout << output(newMap)<< endl;
     cout << "Now its:" << map[a] <<endl;
     cout << map.contains(a)<< endl;

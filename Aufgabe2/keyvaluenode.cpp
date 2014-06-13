@@ -36,14 +36,17 @@ cout<< "Find" << key.num() << "/"<< key.denom() <<endl;
 KeyValueNode* KeyValueNode::clone(){
 
     KeyValueNode* clonedNode = new KeyValueNode(m_key,m_mapped);
+
+
+
     if(rTree != 0){
-        clonedNode->rTree = rTree;
-        rTree->clone();
+        clonedNode->rTree = rTree->clone();
+
 
     }
     if(lTree != 0){
-        clonedNode->lTree = lTree;
-        lTree->clone();
+        clonedNode->lTree = lTree->clone();
+
 }
     return clonedNode;
 }

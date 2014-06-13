@@ -17,6 +17,7 @@ Map& Map::operator=(const Map& rhs){
     {
         delete m_root;
     }
+    cout << "Cloning"<< endl;
     m_root = rhs.m_root->clone();
     return *this;
 }
