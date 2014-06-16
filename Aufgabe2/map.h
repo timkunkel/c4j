@@ -27,13 +27,7 @@ Map(const Map& rhs):m_root(0){
 
 }
 
-
-
 Map& operator=(const Map& rhs);
-
-Map(const Map& rhs): m_root(0){
-    *this = rhs;
-}
 
 mapped_type& operator[](const key_type k);
 const mapped_type operator[](const key_type k) const;

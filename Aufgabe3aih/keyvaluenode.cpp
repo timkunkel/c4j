@@ -5,37 +5,35 @@
 using namespace rn::internal;
 using namespace std;
 
-
-KeyValueNode* KeyValueNode::find(const key_type& key){
+template <class KeyT,class T>
+KeyValueNode<KeyT,T>& KeyValueNode<KeyT,T>::find(const KeyT& key){
 cout<< "Find" << key.num() << "/"<< key.denom() <<endl;
     if(this == 0){
         cout<< "Empty Tree inserting" <<endl;
-        return 0;
+        return *insert(key,0);
     }
     if(key == m_key){
     cout<< "Found " << key.num() << "/"<< key.denom() <<endl;
-        return this;
+        return *this;
     }
 
     else if(key < m_key){
     cout << "smaller" << endl;
         if(lTree == 0)
-           return 0;
+           return *this->insert(key,0);
         lTree->find(key);
     }
     else{
         cout << "bigger"<< endl;
-        if(rTree == 0){
-        cout << "NotNull" << endl;
-           return 0;
-        }
+        if(rTree == 0)
+           return *this->insert(key,0);
 
         rTree->find(key);
     }
 
 }
-
-KeyValueNode* KeyValueNode::clone(){
+template <typename KeyT,typename T>
+KeyValueNode<KeyT,T>* KeyValueNode<KeyT,T>::clone(){
 
     KeyValueNode* clonedNode = new KeyValueNode(m_key,m_mapped);
 
@@ -52,14 +50,15 @@ KeyValueNode* KeyValueNode::clone(){
 }
     return clonedNode;
 }
-KeyValueNode& KeyValueNode::insert(const key_type& key,const mapped_type& mapped){
+template <typename KeyT,typename T>
+KeyValueNode<KeyT,T>* KeyValueNode<KeyT,T>::insert(const KeyT& key,const T& mapped){
     if(key == 0){
-        return *this;
+        return this;
     }
 
     if(key == m_key){
         m_mapped = mapped;
-        return *this;
+        return this;
     }
 
     else if(key < m_key){

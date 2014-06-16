@@ -4,17 +4,15 @@
 namespace rn {
 namespace internal {
 
-
+template <class KeyT,class T>
 class KeyValueNode{
    public:
-    typedef RationalNumber key_type;
-    typedef int mapped_type;
-    mapped_type m_mapped;
+    KeyT m_key;
+    T m_mapped;
 private:
 
     
 public:
-    key_type m_key;
 
     KeyValueNode* rTree;
     KeyValueNode* lTree;
@@ -24,7 +22,7 @@ public:
 
 
 
-    KeyValueNode(const key_type& k,mapped_type m=0,KeyValueNode* r = 0, KeyValueNode* l = 0 )
+    KeyValueNode(const KeyT& k,T m=0,KeyValueNode* r = 0, KeyValueNode* l = 0 )
         :m_key(k),m_mapped(m),rTree(r),lTree(l){
         m_key = k;
         m_mapped = m;
@@ -47,12 +45,13 @@ public:
 
 
     }
+    KeyT key()const{return m_key;}
 
-    key_type key()const{return m_key;}
-    mapped_type  mapped()const { return m_mapped; }
-    KeyValueNode* find(const key_type& key);
-    KeyValueNode& insert(const key_type&,const mapped_type&);
-    KeyValueNode* clone();
+
+    T  mapped()const { return m_mapped; }
+    typename KeyValueNode<KeyT,T>& find(const KeyT& key);
+    typename KeyValueNode<KeyT,T>* insert(const KeyT& key,const T& mapped);
+    typename KeyValueNode<KeyT,T>* clone();
 
 
 

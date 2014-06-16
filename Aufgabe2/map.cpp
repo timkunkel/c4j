@@ -5,7 +5,7 @@ namespace rn {
 
 bool Map::contains(const internal::KeyValueNode::key_type& rhs)const{
      cout << "Trying to find " << rhs.num() <<"/"<< rhs.denom()<<endl;
-     if((m_root->find(rhs).mapped()) != 0 ){
+     if((m_root->find(rhs)) != 0 ){
        return true;
 }
     return false;
@@ -30,15 +30,17 @@ Map::mapped_type& Map::operator[](const internal::KeyValueNode::key_type k){
        m_root->lTree = 0;
        m_root->rTree = 0;
    }
-
-        return (m_root->find(k)).m_mapped;
+    if(m_root->find(k) == 0)
+        return (m_root->insert(k,NULL)).m_mapped;
+    else
+        return (m_root->insert(k,m_root->find(k)->mapped())).m_mapped;
 
 }
 
 
 const Map::mapped_type rn::Map::operator[](const internal::KeyValueNode::key_type k)const{
         cout << "Trying to find " << k.num()<<endl;
-         return (m_root->find(k).mapped());
+         return (m_root->find(k)->mapped());
 
 
 
