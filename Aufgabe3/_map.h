@@ -1,5 +1,5 @@
-//template<class KeyT,class T>
-bool contains(const typename KeyT& rhs)const{
+template <class key_type,class mapped_type>
+bool contains(const key_type& rhs)const{
      //cout << "Trying to find " << rhs.num() <<"/"<< rhs.denom()<<endl;
      if(m_root == 0)
          return false;
@@ -12,8 +12,8 @@ bool contains(const typename KeyT& rhs)const{
 
 }
 
-//template<class KeyT,class T>
-typename Map<KeyT,T>& operator=(const typename Map<KeyT,T>& rhs){
+template <class key_type,class mapped_type>
+rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
     if(m_root)
     {
         delete m_root;
@@ -24,8 +24,8 @@ typename Map<KeyT,T>& operator=(const typename Map<KeyT,T>& rhs){
 }
 
 
-//template<class KeyT,class T>
-T& operator[](const typename KeyT& k){
+template <class key_type,class mapped_type>
+mapped_type& operator[](const key_type& k){
    // cout << "Adding" << endl;
 
 
@@ -47,11 +47,11 @@ T& operator[](const typename KeyT& k){
 }
  }
 
-//template<class KeyT,class T>
-const T operator[](const typename KeyT k)const{
+template <class key_type,class mapped_type>
+const mapped_type operator[](const key_type k)const{
         //cout << "Trying to find " << k.num()<<endl;
 
-         return (T) (m_root->find(k).mapped());
+         return  (m_root->find(k).mapped());
 
 }
 

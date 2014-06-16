@@ -5,7 +5,6 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     rationalnumber.cpp \
-    map.cpp \
     keyvaluenode.cpp
 
 HEADERS += \

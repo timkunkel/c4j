@@ -5,8 +5,8 @@
 //using namespace rn::internal;
 //using namespace std;
 
-//template <class KeyT,class T>
-typename KeyValueNode<KeyT,T>* find(const key_type& key){
+//template <class key_type,class mapped_type>
+KeyValueNode<key_type, mapped_type>* find(const key_type& key){
     //cout<< "Find" << key.num() << "/"<< key.denom() <<endl;
         if(this == 0){
             cout<< "Empty Tree inserting" <<endl;
@@ -34,8 +34,8 @@ typename KeyValueNode<KeyT,T>* find(const key_type& key){
         }
 
 }
-//template <class KeyT,class T>
-typename KeyValueNode<KeyT,T>* clone(){
+template <class key_type,class mapped_type>
+KeyValueNode<key_type, mapped_type>* clone(){
 
     KeyValueNode* clonedNode = new KeyValueNode(m_key,m_mapped);
 
@@ -52,8 +52,8 @@ typename KeyValueNode<KeyT,T>* clone(){
 }
     return clonedNode;
 }
-//template <class KeyT,class T>
-typename KeyValueNode<KeyT,T>& insert(const key_type& key,const mapped_type& mapped){
+//template <class key_type,class mapped_type>
+KeyValueNode<key_type, mapped_type>& insert(const key_type& key,const mapped_type& mapped){
     if(key == 0){
         return *this;
     }

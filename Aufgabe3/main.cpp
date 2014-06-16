@@ -30,9 +30,6 @@ void outPut(rn::internal::KeyValueNode<float,string>* node){
         if(node->rTree != 0){
             outPut(node->rTree);
 
-
-
-
     }
 
 }
@@ -49,7 +46,7 @@ void doMapTests(){
 
     cout << "Starting tests" << endl;
     Map<float,std::string> map;
-
+    cout<< map.m_root << endl;
     assert(!map.contains(2));
     cout << "Passed 1" << endl;
     map[2.0] = s;
