@@ -10,7 +10,7 @@ class KeyValueNode{
 public:
     typedef KeyT key_type;
     typedef T mapped_type;
-    pair<key_type,mapped_type> value_t;
+    pair<const key_type,mapped_type> value_t;
 
 private:    
     
@@ -19,11 +19,9 @@ public:
     KeyValueNode* lTree;
     KeyValueNode* parent;
 
-    KeyValueNode(key_type const k ,KeyValueNode* r = 0, KeyValueNode* l = 0,KeyValueNode* p = 0 )
-        :rTree(r),lTree(l),parent(p){
-        value_t.first = k;
-        rTree = r;
-        lTree = l;
+    KeyValueNode(key_type k ,KeyValueNode* r = 0, KeyValueNode* l = 0,KeyValueNode* p = 0 )
+        :rTree(r),lTree(l),parent(p),value_t(k,*(new mapped_type())){
+
     }
 
     ~KeyValueNode(){

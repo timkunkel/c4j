@@ -14,7 +14,7 @@
 using namespace std;
 using namespace rn;
 
-void outPut(rn::internal::KeyValueNode<float,string>* node){
+void outPut(rn::internal::KeyValueNode<const float,string>* node){
     if(node != 0){
         cout << "Node:" <<node->key()<< " = "<< node->mapped()  << endl;
         if(node->lTree != 0){
@@ -42,7 +42,7 @@ void doMapTests(){
     string s = "eins";
 
     cout << "Starting tests" << endl;
-    Map<float,std::string> map;
+    Map<const float,std::string> map;
     cout<< map.m_root << endl;
     assert(!map.contains(2));
     cout << "Passed 1" << endl;
@@ -67,14 +67,14 @@ void doMapTests(){
 
 
 
-    Map<float,string>::Iterator iter = map.begin();
+    Map<const float,string>::Iterator iter = map.begin();
      cout <<"Iterator Test"<<endl;
      while(iter != map.end()){
 
          cout << iter->first <<": "<< iter->second <<endl;
          iter++;
      }
-  map.begin()->first = 15.0f;
+ // map.begin()->first = 15.0f;
    iter = map.begin();
     while(iter != map.end()){
 
@@ -86,7 +86,7 @@ void doMapTests(){
 
     //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
     cout << "Begin()"<<endl;
-    Map<float,string>::Iterator it = map.begin();
+    Map<const float,string>::Iterator it = map.begin();
   //  std::pair<float,string> first = *it;
     cout << map.begin()->first << endl;
     outPut(map.m_root);

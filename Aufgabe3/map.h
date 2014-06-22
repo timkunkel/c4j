@@ -11,7 +11,7 @@ class Map{
 public:
     class Iterator{
     public:
-        internal::KeyValueNode<KeyT,T>* m_node;
+        internal::KeyValueNode<const KeyT,T>* m_node;
 
         Iterator(internal::KeyValueNode<KeyT,T>* node):m_node(0){
             m_node = node;
@@ -30,11 +30,11 @@ public:
         }
 
         std::pair<KeyT,T>& operator*(){
-            return *this->m_node->value_t;
+            return m_node->value_t;
         }
 
         std::pair<KeyT,T>* operator->(){
-            return &this->m_node->value_t;
+            return &m_node->value_t;
         }
 
         Iterator operator++(){
@@ -51,10 +51,10 @@ public:
     };
 
     internal::KeyValueNode<KeyT,T>* m_root;
-    typedef const KeyT key_type;
+    typedef KeyT const key_type;
     typedef T mapped_type;
     typedef Iterator iterator;
-    typedef std::pair<key_type,mapped_type> value_t;
+    typedef std::pair<const key_type,mapped_type> value_t;
 
     Map():m_root(0){}
     ~Map(){
