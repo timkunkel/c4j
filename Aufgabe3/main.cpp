@@ -18,21 +18,19 @@ void outPut(rn::internal::KeyValueNode<float,string>* node){
     if(node != 0){
         cout << "Node:" <<node->key()<< " = "<< node->mapped()  << endl;
         if(node->lTree != 0){
-        cout << "Left:" <<node->lTree->key()<< " = "<< node->lTree ->mapped()  << endl;
-        if(node->rTree == 0)
-            cout<<""<< endl;
+            cout << "Left:" <<node->lTree->key()<< " = "<< node->lTree ->mapped()  << endl;
+            if(node->rTree == 0)
+                cout<<""<< endl;
         }
         if(node->rTree != 0){
-        cout << "Right:" <<node->rTree->key()<< " = "<< node->rTree ->mapped() <<"\n\n" << endl;
-      }
+            cout << "Right:" <<node->rTree->key()<< " = "<< node->rTree ->mapped() <<"\n\n" << endl;
+        }
         if(node->lTree != 0)
             outPut(node->lTree);
         if(node->rTree != 0){
             outPut(node->rTree);
-
+        }
     }
-
-}
 }
 
 void doMapTests(){
@@ -43,7 +41,6 @@ void doMapTests(){
     RationalNumber d(5,1);
     string s = "eins";
 
-
     cout << "Starting tests" << endl;
     Map<float,std::string> map;
     cout<< map.m_root << endl;
@@ -52,78 +49,71 @@ void doMapTests(){
 
     //assert(map.contains(2.0));
 
-
     //cout << map[2.0] << endl;
 
-     map[15.0f] = "Fünfzehn";
+    map[15.0f] = "Fünfzehn";
 
+    map[6.0f] = "Sechs"; cout << map.m_root->find(15.0f)->value_t.second << endl;
+    map[16.0f] = "Sechszehn";
+    map[4.0f] = "Vier";
+    map[7.0f] = "Sieben";
+    map[6.5f] = "Sechs komma Fünf";
+    map[8.0f] = "Acht";
+    map[5.0f] = "Fünf";
+    map[3.0f] = "Drei";
+    map[3.2f] = "Drei komma Zwei";
+    map[3.1f] = "Drei komma Eins";
 
-     map[6.0f] = "Sechs"; cout << map.m_root->find(15.0f)->value_t.second << endl;
-     map[16.0f] = "Sechszehn";
-     map[4.0f] = "Vier";
-     map[7.0f] = "Sieben";
-     map[6.5f] = "Sechs komma Fünf";
-     map[8.0f] = "Acht";
-     map[5.0f] = "Fünf";
-     map[3.0f] = "Drei";
-     map[3.2f] = "Drei komma Zwei";
-     map[3.1f] = "Drei komma Eins";
+    Map<float,string>::Iterator iter = map.begin();
+    cout << iter ->first << ": " << iter ->second <<endl;
+    cout <<"Iterator Test"<<endl;
+    cout << ((iter))->first << ": " << (*(iter++)).second<< endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+    cout << (*(iter)).first <<  ": " << (*(iter)).second<<endl;
+    cout <<"Iterator Test End"<<endl;
 
-     Map<float,string>::Iterator iter = map.begin();
-     cout << iter ->first << ": " << iter ->second <<endl;
-     cout <<"Iterator Test"<<endl;
-     cout << ((iter))->first << ": " << (*(iter++)).second<< endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-     cout << (*(iter)).first <<  ": " << (*(iter)).second<<endl;
-     cout <<"Iterator Test End"<<endl;
-
-  //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
+    //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
     cout << "Begin()"<<endl;
     Map<float,string>::Iterator it = map.begin();
     std::pair<float,string> first = *it;
     cout << map.begin()->first << endl;
     outPut(map.m_root);
 
+    //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
 
-  //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
-
-   // map[3] = 4;
+    // map[3] = 4;
     cout << "PAssed" << endl;
 
-   // map[d] = 1;
-   // map[2] =5;
+    // map[d] = 1;
+    // map[2] =5;
     cout << "PAssed" << endl;
 
-   // map[c] = 2;
-   // int i;
-   // i = map[a];
-
+    // map[c] = 2;
+    // int i;
+    // i = map[a];
 
     //cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
 
-  //  cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
-  //          "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
-   //         "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
+    //  cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
+    //          "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
+    //         "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
     //        endl;
-   //Map<RationalNumber,int> newMap = map;
-   // cout << outputString(newMap.m_root, 3)<< endl;
+    //Map<RationalNumber,int> newMap = map;
+    // cout << outputString(newMap.m_root, 3)<< endl;
     //cout << "Now its:" << map[a] <<endl;
-   // cout << map.contains(a)<< endl;
-
+    // cout << map.contains(a)<< endl;
 }
 
-void doUnitTests_RationalNumber() {
-
+void doUnitTests_RationalNumber() {    
     cout << "Starting unit tests for class RationalNumber..." << endl;
-
     {
         // test default constructor, isValid(), and accessor num()
         cout << "- default constructor..." << flush;
@@ -132,7 +122,6 @@ void doUnitTests_RationalNumber() {
         assert(a.num() == 0);
         cout << " passed." << endl;
     }
-
     {
         // test non-default constructors and both accessors num() and denom()
         cout << "- more constructors..." << flush;
@@ -153,7 +142,6 @@ void doUnitTests_RationalNumber() {
 
         cout << " passed." << endl;
     }
-
     {
         // test const RationalNumber objects, operator==(), normalization, and inverse()
         cout << "- const..." << flush;
@@ -165,7 +153,6 @@ void doUnitTests_RationalNumber() {
 
         cout << " passed." << endl;
     }
-
     {
         // addition and unary minus
         cout << "- operator+()..." << flush;
@@ -175,7 +162,6 @@ void doUnitTests_RationalNumber() {
 
         cout << " passed." << endl;
     }
-
     {
         // order
         cout << "- ordered sequence..." << flush;
@@ -186,15 +172,13 @@ void doUnitTests_RationalNumber() {
         assert(!(a < c));
         cout << " passed." << endl;
     }
-
     cout << "Unit tests for class RationalNumber finished!" << endl;
-
 }
 
 int main()
 {
     doMapTests();
-//  doUnitTests_RationalNumber();
-  //  doUnitTests_RationalNumber();
+    //  doUnitTests_RationalNumber();
+    //  doUnitTests_RationalNumber();
     return 0;
 }
