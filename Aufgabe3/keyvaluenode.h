@@ -10,19 +10,20 @@ class KeyValueNode{
 public:
     typedef KeyT key_type;
     typedef T mapped_type;
-    mapped_type m_mapped;
+    pair<key_type,mapped_type> value_t;
 private:
 
     
 public:
-    key_type m_key;
 
     KeyValueNode* rTree;
     KeyValueNode* lTree;
+    KeyValueNode* parent;
 
-    KeyValueNode(key_type k ,KeyValueNode* r = 0, KeyValueNode* l = 0 )
-        :m_key(k),rTree(r),lTree(l){
-        m_key = k;
+    KeyValueNode(key_type k ,KeyValueNode* r = 0, KeyValueNode* l = 0,KeyValueNode* p = 0 )
+        :rTree(r),lTree(l),parent(p){
+
+        value_t.first = k;
 
         rTree = r;
         lTree = l;
@@ -37,15 +38,24 @@ public:
     }
 
     KeyValueNode& operator=(const KeyValueNode& rhs){
+        cout << "Operator =" << endl;
+        value_t.first = rhs.key();
+        value_t.second = rhs.mapped();
 
-        m_key = rhs.m_key;
-        m_mapped = rhs.m_mapped;
+     return *this;
 
+    }
+    KeyValueNode& operator=(const mapped_type& rhs){
+        cout << "Operator =" << endl;
+       // value_t.first = rhs.key();
+        value_t.second = rhs;
+
+     return *this;
 
     }
 
-    key_type key()const{return m_key;}
-    mapped_type  mapped()const { return m_mapped; }
+    key_type key()const{return value_t.first;}
+    mapped_type  mapped()const { return value_t.second; }
     //KeyValueNode<KeyT,T>* find(const key_type& key);
     //KeyValueNode<KeyT,T>& insert(const key_type&,const mapped_type&);
     //KeyValueNode<KeyT,T>* clone();

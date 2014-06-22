@@ -9,11 +9,55 @@ template <class KeyT,class T>
 class Map{
 
 public:
+    class Iterator{
+    public:
+        internal::KeyValueNode<KeyT,T>* m_node;
+
+        Iterator(internal::KeyValueNode<KeyT,T>* node):m_node(0){
+            m_node = node;
+        }
+        bool operator =(const Iterator &rhs){
+            m_node = rhs;
+        }
+
+        bool operator!=(const Iterator &rhs) { return !(*this == rhs); }
+
+        bool operator==(const Iterator &rhs) {
+            return m_node  == rhs.m_node;
+        }
+
+        std::pair<KeyT,T>& operator*(){
+         return this->m_node->value_t;
+        }
+        std::pair<KeyT,T>* operator->(){
+         return &this->m_node->value_t;
+        }
+
+        Iterator operator++(){
+            Iterator tmp = *this;
+            m_node = m_node->findNext();
+            return tmp;
+
+        }
+        Iterator operator++(int){
+            Iterator tmp = *this;
+            m_node = m_node->findNext();
+            return tmp;
+
+        }
+
+
+
+
+
+    };
 
     internal::KeyValueNode<KeyT,T>* m_root;
 
     typedef KeyT key_type;
     typedef T mapped_type;
+    typedef Iterator iterator;
+    typedef std::pair<key_type,mapped_type> value_t;
 
     Map():m_root(0){}
     ~Map(){
@@ -50,7 +94,6 @@ public:
         {
             delete m_root;
         }
-        cout << "Cloning"<< endl;
         m_root = rhs.m_root->clone();
         return *this;
     }
@@ -58,31 +101,34 @@ public:
 
     //    template <class key_type,class mapped_type>
     mapped_type& operator[](const key_type& k){
-        // cout << "Adding" << endl;
 
         if(m_root == 0){
-            cout << "Adding" << endl;
             m_root = new rn::internal::KeyValueNode<KeyT,T>(k);
-            cout << "Created new root nodel" <<endl;
         }
 
         if(m_root->find(k) == 0){
 
-            return (m_root->insert(k,m_root->mapped())).m_mapped;
+            return (m_root->insert(k,m_root->value_t.second)).value_t.second;
 
         }
         else{
-            return (m_root->insert(k,m_root->find(k)->mapped())).m_mapped;
+            return (m_root->insert(k,m_root->find(k)->value_t.second)).value_t.second;
         }
     }
 
     //    template <class key_type,class mapped_type>
     const mapped_type operator[](const key_type k)const{
-        //cout << "Trying to find " << k.num()<<endl;
 
-        return  (m_root->find(k).mapped());
+        return  (m_root->find(k).value_t.second);
 
     }
+//template <class key_type,class mapped_type>
+iterator begin(){
+
+
+        return Iterator(m_root->findSmallest());
+}
+
 };
 }
 

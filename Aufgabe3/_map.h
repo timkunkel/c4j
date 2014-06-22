@@ -26,21 +26,11 @@ rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
 
 template <class key_type,class mapped_type>
 mapped_type& operator[](const key_type& k){
-   // cout << "Adding" << endl;
-
-
     if(m_root == 0){
-        cout << "Adding" << endl;
         m_root = new rn::internal::KeyValueNode<KeyT,T>(k);
-        cout << "Created new root nodel" <<endl;
-
-
     }
-
-     if(m_root->find(k) == 0){
-
+    if(m_root->find(k) == 0){
          return (m_root->insert(k,m_root->mapped())).m_mapped;
-
      }
      else{
          return (m_root->insert(k,m_root->find(k)->mapped())).m_mapped;

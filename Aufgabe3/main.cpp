@@ -49,21 +49,49 @@ void doMapTests(){
     cout<< map.m_root << endl;
     assert(!map.contains(2));
     cout << "Passed 1" << endl;
-    map[2.0] = s;
-    assert(map.contains(2.0));
 
-    cout << map[2.0] << endl;
-     map[2.0f] = "Zwei";
-     map[2.1f] = "Zwei komma Eins";
-     map[0.1f] = "Null komma eins";
-     map[0.01f] = "Sehr Klein";
+    //assert(map.contains(2.0));
 
-     cout << map[2.0] << endl;
-     //cout << "Root:" <<map.m_root->key()<< " = "<< map.m_root->mapped()  << endl;
-    // cout << "Left:" <<map.m_root->lTree->key()<< " = "<< map.m_root->lTree ->mapped()  << endl;
-    // cout << "Right:" <<map.m_root->rTree->key()<< " = "<< map.m_root->rTree ->mapped()  << endl;
+
+    //cout << map[2.0] << endl;
+
+     map[15.0f] = "Fünfzehn";
+
+
+     map[6.0f] = "Sechs"; cout << map.m_root->find(15.0f)->value_t.second << endl;
+     map[16.0f] = "Sechszehn";
+     map[4.0f] = "Vier";
+     map[7.0f] = "Sieben";
+     map[6.5f] = "Sechs komma Fünf";
+     map[8.0f] = "Acht";
+     map[5.0f] = "Fünf";
+     map[3.0f] = "Drei";
+     map[3.2f] = "Drei komma Zwei";
+     map[3.1f] = "Drei komma Eins";
+
+     Map<float,string>::Iterator iter = map.begin();
+     cout << iter ->first << ": " << iter ->second <<endl;
+     cout <<"Iterator Test"<<endl;
+     cout << ((iter))->first << ": " << (*(iter++)).second<< endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
+     cout << (*(iter)).first <<  ": " << (*(iter)).second<<endl;
+     cout <<"Iterator Test End"<<endl;
+
+  //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
+    cout << "Begin()"<<endl;
+    Map<float,string>::Iterator it = map.begin();
+    std::pair<float,string> first = *it;
+    cout << map.begin()->first << endl;
     outPut(map.m_root);
-    cout << "PAssed" << endl;
+
 
   //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
 
