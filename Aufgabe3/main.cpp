@@ -53,7 +53,7 @@ void doMapTests(){
 
     map[15.0f] = "Fünfzehn";
 
-    map[6.0f] = "Sechs"; cout << map.m_root->find(15.0f)->value_t.second << endl;
+    map[6.0f] = "Sechs";
     map[16.0f] = "Sechszehn";
     map[4.0f] = "Vier";
     map[7.0f] = "Sieben";
@@ -63,27 +63,31 @@ void doMapTests(){
     map[3.0f] = "Drei";
     map[3.2f] = "Drei komma Zwei";
     map[3.1f] = "Drei komma Eins";
+    map[17.f] = "Siebzehn";
+
+
 
     Map<float,string>::Iterator iter = map.begin();
-    cout << iter ->first << ": " << iter ->second <<endl;
-    cout <<"Iterator Test"<<endl;
-    cout << ((iter))->first << ": " << (*(iter++)).second<< endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first<<  ": " << (*(iter++)).second<<endl;
-    cout << (*(iter)).first <<  ": " << (*(iter)).second<<endl;
+     cout <<"Iterator Test"<<endl;
+     while(iter != map.end()){
+
+         cout << iter->first <<": "<< iter->second <<endl;
+         iter++;
+     }
+  map.begin()->first = 15.0f;
+   iter = map.begin();
+    while(iter != map.end()){
+
+        cout << iter->first <<": "<< iter->second <<endl;
+        iter++;
+    }
+
     cout <<"Iterator Test End"<<endl;
 
     //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
     cout << "Begin()"<<endl;
     Map<float,string>::Iterator it = map.begin();
-    std::pair<float,string> first = *it;
+  //  std::pair<float,string> first = *it;
     cout << map.begin()->first << endl;
     outPut(map.m_root);
 

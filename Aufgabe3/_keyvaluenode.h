@@ -1,20 +1,20 @@
+//template <class key_type,class mapped_type>
 KeyValueNode<key_type, mapped_type>* find(const key_type& key){
-    if(this == 0){
-        return 0;
-    }
+
     if(key == value_t.first){
+        cout <<" Found " << this << endl;
         return this;
     }
     else if(key < value_t.first){
         if(lTree == 0)
             return 0;
-        lTree->find(key);
+       return  lTree->find(key);
     }
     else if(key > value_t.first){
         if(rTree == 0){
             return 0;
         }
-        rTree->find(key);
+        return rTree->find(key);
     }
     return 0;
 }
@@ -31,7 +31,7 @@ KeyValueNode<key_type, mapped_type>* clone(){
     return clonedNode;
 }
 
-template <class key_type,class mapped_type>
+//template <class key_type,class mapped_type>
 KeyValueNode<key_type, mapped_type>& insert(const key_type& newKey,const mapped_type& newMapped){    
     if(newKey == value_t.first){
         value_t.second = newMapped;
@@ -42,19 +42,20 @@ KeyValueNode<key_type, mapped_type>& insert(const key_type& newKey,const mapped_
             lTree = new KeyValueNode(newKey);
             lTree->parent = this;
             lTree->value_t.second = newMapped;
-            cout << "Creating new lTree with " << newKey << " " << newMapped << endl;
+            return *lTree;
         }
         else
-            lTree->insert(newKey,newMapped);
+            return lTree->insert(newKey,newMapped);
     }
     else if(newKey > value_t.first){
         if(rTree == 0){
             rTree = new KeyValueNode(newKey);
             rTree->parent = this;
             rTree->value_t.second = newMapped;
+            return *rTree;
         }
         else
-            rTree->insert(newKey,newMapped);
+           return  rTree->insert(newKey,newMapped);
     }
     return *this;
 }
@@ -76,5 +77,12 @@ KeyValueNode<key_type,mapped_type>* findSmallest(){
         return this;
     }
     return  lTree->findSmallest();
+}
+KeyValueNode<key_type,mapped_type>* findBiggest(){
+    if(rTree == 0){
+      return this;
+        // return rTree;
+    }
+    return  rTree->findBiggest();
 }
 

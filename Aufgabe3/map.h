@@ -18,7 +18,7 @@ public:
         }
 
         void operator =(const Iterator &rhs){
-            m_node = rhs;
+            m_node = rhs.m_node;
         }
 
         bool operator!=(const Iterator &rhs) {
@@ -30,7 +30,7 @@ public:
         }
 
         std::pair<KeyT,T>& operator*(){
-            return this->m_node->value_t;
+            return *this->m_node->value_t;
         }
 
         std::pair<KeyT,T>* operator->(){
@@ -38,9 +38,9 @@ public:
         }
 
         Iterator operator++(){
-            Iterator tmp = *this;
+
             m_node = m_node->findNext();
-            return tmp;
+            return *this;
         }
 
         Iterator operator++(int){
@@ -51,7 +51,7 @@ public:
     };
 
     internal::KeyValueNode<KeyT,T>* m_root;
-    typedef KeyT key_type;
+    typedef const KeyT key_type;
     typedef T mapped_type;
     typedef Iterator iterator;
     typedef std::pair<key_type,mapped_type> value_t;
@@ -69,12 +69,17 @@ public:
         if(m_root == 0)
             return false;
 
-        if((m_root->find(rhs)) != NULL ){
-            cout << "Found" << endl;
+        if((m_root->find(rhs)) != 0 ){
             return true;
         }
         return false;
     }
+    rn::Map<key_type,mapped_type>& operator=(const mapped_type& rhs){
+
+        return *this;
+    }
+
+
 
     rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
         if(m_root){
@@ -84,24 +89,25 @@ public:
         return *this;
     }
 
-    mapped_type& operator[](const key_type& k){
+     mapped_type& operator[](const key_type& k){
         if(m_root == 0){
             m_root = new rn::internal::KeyValueNode<KeyT,T>(k);
         }
+
         if(m_root->find(k) == 0){
-            return (m_root->insert(k,m_root->value_t.second)).value_t.second;
+             (m_root->insert(k,*(new mapped_type())));
         }
-        else{
-            return (m_root->insert(k,m_root->find(k)->value_t.second)).value_t.second;
-        }
+
+
+        return m_root->find(k)->value_t.second;
     }
 
-    const mapped_type operator[](const key_type k)const{
-        return  (m_root->find(k).value_t.second);
-    }
 
     iterator begin(){
         return Iterator(m_root->findSmallest());
+    }
+    iterator end(){
+        return Iterator(m_root->findBiggest());
     }
 };
 }

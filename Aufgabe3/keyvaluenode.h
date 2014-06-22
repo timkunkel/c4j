@@ -19,7 +19,7 @@ public:
     KeyValueNode* lTree;
     KeyValueNode* parent;
 
-    KeyValueNode(key_type k ,KeyValueNode* r = 0, KeyValueNode* l = 0,KeyValueNode* p = 0 )
+    KeyValueNode(key_type const k ,KeyValueNode* r = 0, KeyValueNode* l = 0,KeyValueNode* p = 0 )
         :rTree(r),lTree(l),parent(p){
         value_t.first = k;
         rTree = r;
@@ -35,18 +35,9 @@ public:
         }
     }
 
-    KeyValueNode& operator=(const KeyValueNode& rhs){
-        cout << "Operator =" << endl;
-        value_t.first = rhs.key();
-        value_t.second = rhs.mapped();
-        return *this;
-    }
 
-    KeyValueNode& operator=(const mapped_type& rhs){
-        cout << "Operator =" << endl;
-        value_t.second = rhs;
-        return *this;
-    }
+
+
 
     key_type key()const{return value_t.first;}
     mapped_type  mapped()const { return value_t.second; }
