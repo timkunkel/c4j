@@ -77,7 +77,7 @@ public:
 
 
    //template <typename key_type,typename mapped_type>
-   rn::Map<typename key_type,typename mapped_type>& operator=(const  Map<typename key_type,typename mapped_type>& rhs){
+   rn::Map<key_type, mapped_type>& operator=(const  Map<key_type, mapped_type>& rhs){
         cout << "Cloning"<<endl;
 
         if(m_root){
