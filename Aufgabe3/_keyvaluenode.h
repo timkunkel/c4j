@@ -18,23 +18,22 @@ KeyValueNode<key_type, mapped_type>* find(const key_type& key){
     return 0;
 }
 
-template <class key_type,class mapped_type>
+//template <class key_type,class mapped_type>
 KeyValueNode<key_type, mapped_type>* clone(){
-cout<< value_t.first << endl;
-    KeyValueNode* clonedNode = new KeyValueNode(value_t.first, value_t.second);
+    KeyValueNode<key_type, mapped_type>* clonedNode = new KeyValueNode(value_t.first);
+    clonedNode->value_t.second = value_t.second;
+    clonedNode->parent = parent;
     if(rTree != 0){
         clonedNode->rTree = rTree->clone();
-        clonedNode->parent = rTree -> parent;
     }
     if(lTree != 0){
         clonedNode->lTree = lTree->clone();
-        clonedNode->parent = lTree->parent;
     }
     return clonedNode;
 }
 
 //template <class key_type,class mapped_type>
-KeyValueNode<key_type, mapped_type>& insert(const key_type& newKey,const mapped_type& newMapped){    
+KeyValueNode<key_type, mapped_type>& insert(const key_type& newKey,const mapped_type& newMapped){
     if(newKey == value_t.first){
         value_t.second = newMapped;
         return *this;

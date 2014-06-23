@@ -76,15 +76,18 @@ public:
     }
 
 
-    template <class key_type,class mapped_type>
-    rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
+   //template <typename key_type,typename mapped_type>
+   rn::Map<typename key_type,typename mapped_type>& operator=(const  Map<typename key_type,typename mapped_type>& rhs){
+        cout << "Cloning"<<endl;
+
         if(m_root){
             delete m_root;
         }
-        //(rhs.m_root)
-           // m_root = rhs.m_root->clone();
-        return *this->m_root = rhs.m_root->clone();
+        if (rhs.m_root)
+            this->m_root = rhs.m_root->clone();
+        return *this;
     }
+
     mapped_type& operator[](const key_type& k){
         if(m_root == 0){
             m_root = new rn::internal::KeyValueNode<KeyT,T>(k);

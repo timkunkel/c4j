@@ -56,13 +56,18 @@ void doMapTests(){
     cout << mapRN.m_root->find(a)->value_t.first.num() << "/" << mapRN.m_root->find(a)->value_t.first.denom()
          << ": " << mapRN.m_root->find(a)->value_t.second << endl;
 
-    cout << mapRN[a] << endl;
+  //  cout << mapRN[a] << endl;
     //Copy Map
     Map<const RationalNumber,int> mapRN2 = mapRN;
-    cout << mapRN2.m_root->find(a)->value_t.first.num() << "/" << mapRN2.m_root->find(a)->value_t.first.denom()
-         << ": " << mapRN2.m_root->find(a)->value_t.second << endl;
-    map[15.0f] = "Fünfzehn";
+    cout << mapRN2.m_root->value_t.first.num() << "/" << mapRN2.m_root->value_t.first.denom()
+         << ": " << mapRN2.m_root->value_t.second << endl;
 
+    cout<<"Adress RootNode of mapRN: "<< mapRN.m_root <<endl;
+    cout<<"Adress RootNode of cloned Map mapRN2: "<< mapRN2.m_root << endl;
+
+
+
+    map[15.0f] = "Fünfzehn";
     map[6.0f] = "Sechs";
     map[16.0f] = "Sechszehn";
     map[4.0f] = "Vier";
@@ -78,28 +83,28 @@ void doMapTests(){
 
 
     Map<const float,string>::Iterator iter = map.begin();
-     cout <<"Iterator Test"<<endl;
+   //  cout <<"Iterator Test"<<endl;
      while(iter != map.end()){
 
-         cout << iter->first <<": "<< iter->second <<endl;
+      //   cout << iter->first <<": "<< iter->second <<endl;
          iter++;
      }
  // map.begin()->first = 15.0f;
    iter = map.begin();
     while(iter != map.end()){
 
-        cout << iter->first <<": "<< iter->second <<endl;
+     //   cout << iter->first <<": "<< iter->second <<endl;
         iter++;
     }
 
-    cout <<"Iterator Test End"<<endl;
+  //  cout <<"Iterator Test End"<<endl;
 
     //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
     cout << "Begin()"<<endl;
     Map<const float,string>::Iterator it = map.begin();
   //  std::pair<float,string> first = *it;
-    cout << map.begin()->first << endl;
-    outPut(map.m_root);
+  //  cout << map.begin()->first << endl;
+ //   outPut(map.m_root);
 
     //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
 
