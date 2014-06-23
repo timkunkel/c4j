@@ -33,10 +33,6 @@ public:
         }
     }
 
-
-
-
-
     key_type key()const{return value_t.first;}
     mapped_type  mapped()const { return value_t.second; }
 #include "_keyvaluenode.h"

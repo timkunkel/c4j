@@ -6,8 +6,7 @@
 
 namespace rn{
 template <class KeyT,class T>
-class Map{
-
+class Map{    
 public:
     class Iterator{
     public:
@@ -76,7 +75,7 @@ public:
         return false;
     }
 
-   rn::Map<key_type, mapped_type>& operator=(const  Map<key_type, mapped_type>& rhs){
+    rn::Map<key_type, mapped_type>& operator=(const  Map<key_type, mapped_type>& rhs){
         cout << "Cloning"<<endl;
 
         if(m_root){
@@ -109,6 +108,4 @@ public:
     }
 };
 }
-
-
 #endif // MAP_H
