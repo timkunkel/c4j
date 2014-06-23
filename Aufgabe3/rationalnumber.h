@@ -21,7 +21,7 @@ public:
     //RationalNumber operator[](const RationalNumber& rn) const;
     bool operator==(RationalNumber rhs) const;
     RationalNumber operator-();
-    bool operator<(RationalNumber rhs) const;
+    bool operator<(RationalNumber  rhs) const;
 
 
 };

@@ -74,28 +74,24 @@ public:
         }
         return false;
     }
-    rn::Map<key_type,mapped_type>& operator=(const mapped_type& rhs){
-
-        return *this;
-    }
 
 
-
+    template <class key_type,class mapped_type>
     rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
         if(m_root){
             delete m_root;
         }
-        m_root = rhs.m_root->clone();
-        return *this;
+        //(rhs.m_root)
+           // m_root = rhs.m_root->clone();
+        return *this->m_root = rhs.m_root->clone();
     }
-
-     mapped_type& operator[](const key_type& k){
+    mapped_type& operator[](const key_type& k){
         if(m_root == 0){
             m_root = new rn::internal::KeyValueNode<KeyT,T>(k);
         }
 
         if(m_root->find(k) == 0){
-             (m_root->insert(k,*(new mapped_type())));
+            (m_root->insert(k,*(new mapped_type())));
         }
 
 

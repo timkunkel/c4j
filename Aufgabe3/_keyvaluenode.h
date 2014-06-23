@@ -2,7 +2,6 @@
 KeyValueNode<key_type, mapped_type>* find(const key_type& key){
 
     if(key == value_t.first){
-        cout <<" Found " << this << endl;
         return this;
     }
     else if(key < value_t.first){
@@ -10,7 +9,7 @@ KeyValueNode<key_type, mapped_type>* find(const key_type& key){
             return 0;
        return  lTree->find(key);
     }
-    else if(key > value_t.first){
+    else {
         if(rTree == 0){
             return 0;
         }
@@ -20,13 +19,16 @@ KeyValueNode<key_type, mapped_type>* find(const key_type& key){
 }
 
 template <class key_type,class mapped_type>
-KeyValueNode<key_type, mapped_type>* clone(){    
+KeyValueNode<key_type, mapped_type>* clone(){
+cout<< value_t.first << endl;
     KeyValueNode* clonedNode = new KeyValueNode(value_t.first, value_t.second);
     if(rTree != 0){
         clonedNode->rTree = rTree->clone();
+        clonedNode->parent = rTree -> parent;
     }
     if(lTree != 0){
         clonedNode->lTree = lTree->clone();
+        clonedNode->parent = lTree->parent;
     }
     return clonedNode;
 }
@@ -47,7 +49,7 @@ KeyValueNode<key_type, mapped_type>& insert(const key_type& newKey,const mapped_
         else
             return lTree->insert(newKey,newMapped);
     }
-    else if(newKey > value_t.first){
+    else {
         if(rTree == 0){
             rTree = new KeyValueNode(newKey);
             rTree->parent = this;
@@ -81,7 +83,7 @@ KeyValueNode<key_type,mapped_type>* findSmallest(){
 KeyValueNode<key_type,mapped_type>* findBiggest(){
     if(rTree == 0){
       return this;
-        // return rTree;
+         return rTree;
     }
     return  rTree->findBiggest();
 }

@@ -43,14 +43,24 @@ void doMapTests(){
 
     cout << "Starting tests" << endl;
     Map<const float,std::string> map;
-    cout<< map.m_root << endl;
-    assert(!map.contains(2));
-    cout << "Passed 1" << endl;
+    Map<const RationalNumber,int> mapRN;
 
-    //assert(map.contains(2.0));
+    //Try to find RationalNumber a
+    assert(!mapRN.contains(a));
+    mapRN[a] = 2;
+    assert(mapRN.contains(a));
+    mapRN[b] = 5;
+    mapRN[c] = 3;
 
-    //cout << map[2.0] << endl;
 
+    cout << mapRN.m_root->find(a)->value_t.first.num() << "/" << mapRN.m_root->find(a)->value_t.first.denom()
+         << ": " << mapRN.m_root->find(a)->value_t.second << endl;
+
+    cout << mapRN[a] << endl;
+    //Copy Map
+    Map<const RationalNumber,int> mapRN2 = mapRN;
+    cout << mapRN2.m_root->find(a)->value_t.first.num() << "/" << mapRN2.m_root->find(a)->value_t.first.denom()
+         << ": " << mapRN2.m_root->find(a)->value_t.second << endl;
     map[15.0f] = "Fünfzehn";
 
     map[6.0f] = "Sechs";

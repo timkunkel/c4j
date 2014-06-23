@@ -15,7 +15,6 @@ rn::Map<key_type,mapped_type>& operator=(const Map<key_type,mapped_type>& rhs){
     {
         delete m_root;
     }
-    cout << "Cloning"<< endl;
     m_root = rhs.m_root->clone();
     return *this;
 }
