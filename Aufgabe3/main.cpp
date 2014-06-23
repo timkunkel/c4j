@@ -14,21 +14,21 @@
 using namespace std;
 using namespace rn;
 
-void outPut(rn::internal::KeyValueNode<const float,string>* node){
+void output(rn::internal::KeyValueNode<const float,string>* node){
     if(node != 0){
-        cout << "Node:" <<node->key()<< " = "<< node->mapped()  << endl;
+        cout << "\nNode:" <<node->key()<< " = "<< node->mapped()  << endl;
         if(node->lTree != 0){
             cout << "Left:" <<node->lTree->key()<< " = "<< node->lTree ->mapped()  << endl;
             if(node->rTree == 0)
                 cout<<""<< endl;
         }
         if(node->rTree != 0){
-            cout << "Right:" <<node->rTree->key()<< " = "<< node->rTree ->mapped() <<"\n\n" << endl;
+            cout << "Right:" <<node->rTree->key()<< " = "<< node->rTree ->mapped() << endl;
         }
         if(node->lTree != 0)
-            outPut(node->lTree);
+            output(node->lTree);
         if(node->rTree != 0){
-            outPut(node->rTree);
+            output(node->rTree);
         }
     }
 }
@@ -52,20 +52,22 @@ void doMapTests(){
     mapRN[b] = 5;
     mapRN[c] = 3;
 
-
     cout << mapRN.m_root->find(a)->value_t.first.num() << "/" << mapRN.m_root->find(a)->value_t.first.denom()
          << ": " << mapRN.m_root->find(a)->value_t.second << endl;
 
-  //  cout << mapRN[a] << endl;
+    //  cout << mapRN[a] << endl;
     //Copy Map
     Map<const RationalNumber,int> mapRN2 = mapRN;
     cout << mapRN2.m_root->value_t.first.num() << "/" << mapRN2.m_root->value_t.first.denom()
          << ": " << mapRN2.m_root->value_t.second << endl;
 
-    cout<<"Adress RootNode of mapRN: "<< mapRN.m_root <<endl;
-    cout<<"Adress RootNode of cloned Map mapRN2: "<< mapRN2.m_root << endl;
+    cout<<"Address RootNode of mapRN: "<< mapRN.m_root <<endl;
+    cout<<"Address RootNode of cloned Map mapRN2: "<< mapRN2.m_root << endl;
 
-
+    mapRN[d] = 5;
+    assert(mapRN.contains(d));
+    assert(!mapRN2.contains(d));
+    cout << "Passed map copy tests" << endl;
 
     map[15.0f] = "Fünfzehn";
     map[6.0f] = "Sechs";
@@ -80,55 +82,39 @@ void doMapTests(){
     map[3.1f] = "Drei komma Eins";
     map[17.f] = "Siebzehn";
 
-
+    string mappedString = map[4.0f];
+    cout << "\nString at map 4.0f: " << mappedString << endl;
 
     Map<const float,string>::Iterator iter = map.begin();
-   //  cout <<"Iterator Test"<<endl;
-     while(iter != map.end()){
+    Map<const float,string>::Iterator iter2 = map.begin();
 
-      //   cout << iter->first <<": "<< iter->second <<endl;
-         iter++;
-     }
- // map.begin()->first = 15.0f;
-   iter = map.begin();
+    cout << "\nIterator post increment test" << endl;
+    iter = map.begin();
     while(iter != map.end()){
-
-     //   cout << iter->first <<": "<< iter->second <<endl;
+        cout << iter->first <<": "<< iter->second <<endl;
         iter++;
     }
 
-  //  cout <<"Iterator Test End"<<endl;
+    cout << "\nIterator pre increment test" << endl;
+    iter = map.begin();
+    while(iter != map.end()){
+        cout << iter->first <<": "<< iter->second <<endl;
+        ++iter;
+    }
 
-    //   cout << map.m_root->find(1.0f)->findNext()->key() << endl;
-    cout << "Begin()"<<endl;
-    Map<const float,string>::Iterator it = map.begin();
-  //  std::pair<float,string> first = *it;
-  //  cout << map.begin()->first << endl;
- //   outPut(map.m_root);
+    iter = map.begin();
+    iter2 = map.begin();
+    assert(iter == iter2);
+    assert(iter++ != ++iter2);
+    assert(iter == iter2);
+    assert(iter == iter2++);
+    assert(++iter == iter2);
+    iter2 = map.end();
+    assert(iter2 != iter);
+    cout << "Passed iterator test" << endl;
 
-    //  cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
-
-    // map[3] = 4;
-    cout << "PAssed" << endl;
-
-    // map[d] = 1;
-    // map[2] =5;
-    cout << "PAssed" << endl;
-
-    // map[c] = 2;
-    // int i;
-    // i = map[a];
-
-    //cout << "Map contains" << map.contains(RationalNumber(2,3)) << endl;
-
-    //  cout << "Map root: "<<map.m_root->key().num() << "/" << map.m_root->key().denom() <<
-    //          "Left Tree: "<<map.m_root->lTree->key().num() << "/" << map.m_root->lTree->key().denom() <<
-    //         "Left Tree: "<<map.m_root->rTree->key().num() << "/" << map.m_root->rTree->key().denom() <<
-    //        endl;
-    //Map<RationalNumber,int> newMap = map;
-    // cout << outputString(newMap.m_root, 3)<< endl;
-    //cout << "Now its:" << map[a] <<endl;
-    // cout << map.contains(a)<< endl;
+    //map.begin()->first = 15.0f;
+    output(map.m_root);
 }
 
 void doUnitTests_RationalNumber() {    

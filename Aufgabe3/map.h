@@ -3,7 +3,7 @@
 #include <iostream>
 #include "rationalnumber.h"
 #include "keyvaluenode.h"
-//using namespace std;
+
 namespace rn{
 template <class KeyT,class T>
 class Map{
@@ -38,7 +38,6 @@ public:
         }
 
         Iterator operator++(){
-
             m_node = m_node->findNext();
             return *this;
         }
@@ -57,10 +56,12 @@ public:
     typedef std::pair<const key_type,mapped_type> value_t;
 
     Map():m_root(0){}
+
     ~Map(){
         if(m_root)
             delete m_root;
     }
+
     Map(const Map<KeyT,T>& rhs):m_root(0){
         *this = rhs;
     }
@@ -75,8 +76,6 @@ public:
         return false;
     }
 
-
-   //template <typename key_type,typename mapped_type>
    rn::Map<key_type, mapped_type>& operator=(const  Map<key_type, mapped_type>& rhs){
         cout << "Cloning"<<endl;
 
@@ -101,10 +100,10 @@ public:
         return m_root->find(k)->value_t.second;
     }
 
-
     iterator begin(){
         return Iterator(m_root->findSmallest());
     }
+
     iterator end(){
         return Iterator(m_root->findBiggest());
     }
